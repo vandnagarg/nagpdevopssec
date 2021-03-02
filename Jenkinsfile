@@ -50,7 +50,7 @@ pipeline{
 		}
 		stage("delete container develop"){
 			when{
-				brach 'develop'
+				branch 'develop'
 			}
 		    steps{
 		        echo "del container"
@@ -66,7 +66,7 @@ pipeline{
 		}
 		stage("delete container feature"){
 			when{
-				brach 'feature'
+				branch 'feature'
 			}
 		    steps{
 		        echo "del container"
@@ -82,7 +82,7 @@ pipeline{
 		}
 		stage('docker run develop'){
 			when{
-				brach 'develop'
+				branch 'develop'
 			}
 		    steps{
 		        bat script: 'docker run -p 8080:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
@@ -90,7 +90,7 @@ pipeline{
 		}
 		stage('docker run feature'){
 			when{
-				brach 'feature'
+				branch 'feature'
 			}
 		    steps{
 		        bat script: 'docker run -p 9090:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
@@ -99,7 +99,7 @@ pipeline{
 		stage('docker deployment develop'){
 			steps{
 				when{
-					brach 'develop'
+					branch 'develop'
 				}
 				
 				withEnv(['KubeConfig="./config"']) {
@@ -111,7 +111,7 @@ pipeline{
 		stage('docker deployment feature'){
 			steps{
 				when{
-					brach 'feature'
+					branch 'feature'
 				}
 				
 				withEnv(['KubeConfig="./config"']) {
