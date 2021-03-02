@@ -43,6 +43,11 @@ pipeline{
 				bat script:'dotnet test'
 			}
 		}
+		stage("release"){
+			steps{
+				bat script:"dotnet publish -c Release -o ./Nagpdotnet/vandnaapp"
+			}
+		}
 		stage("docker build"){
 		    steps{
 		        echo "docker build"

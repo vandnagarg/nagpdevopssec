@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\nagp\\2nd Nagp test\\devops\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj": {}
+    "D:\\nagp\\2nd Nagp test\\vandna_garg_devops_3147228\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj": {}
   },
   "projects": {
-    "D:\\nagp\\2nd Nagp test\\devops\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj": {
+    "D:\\nagp\\2nd Nagp test\\vandna_garg_devops_3147228\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\nagp\\2nd Nagp test\\devops\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj",
+        "projectUniqueName": "D:\\nagp\\2nd Nagp test\\vandna_garg_devops_3147228\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj",
         "projectName": "nagpdotnettest",
-        "projectPath": "D:\\nagp\\2nd Nagp test\\devops\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj",
+        "projectPath": "D:\\nagp\\2nd Nagp test\\vandna_garg_devops_3147228\\Nagpdotnet\\nagpdotnettest\\nagpdotnettest.csproj",
         "packagesPath": "C:\\Users\\vandnagarg\\.nuget\\packages\\",
-        "outputPath": "D:\\nagp\\2nd Nagp test\\devops\\Nagpdotnet\\nagpdotnettest\\obj\\",
+        "outputPath": "D:\\nagp\\2nd Nagp test\\vandna_garg_devops_3147228\\Nagpdotnet\\nagpdotnettest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
