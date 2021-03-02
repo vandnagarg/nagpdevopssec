@@ -8,7 +8,7 @@ pipeline{
 	stages{
 		stage('checkout'){
 			steps{
-				git 'https://github.com/vandnagarg/nagpdevopssec'
+				checkout scm
 			}
 		}
 		stage("nuget"){
