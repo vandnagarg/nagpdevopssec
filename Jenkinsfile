@@ -3,7 +3,7 @@ pipeline{
 	
 	environment{
 	    scannerhome = tool name: 'sonar_scanner_dotnet' , type:'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
-		branch='develop'
+		
 	}
 	
 	stages{
@@ -17,16 +17,12 @@ pipeline{
 				bat script:'dotnet restore'
 			}
 		}
-		stage("test"){
-			steps{
-				bat script:'dotnet test'
-			}
-		}
+		
 		stage("start sonar"){
 		    steps{
 		        withSonarQubeEnv('Test_Sonar') {
                     echo "start sonar"
-                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll" begin /k:dontet /n: dotnet /v:1.0'
+                    bat script : 'dotnet "%scannerhome%/SonarScanner.MSBuild.dll" begin /k:dontetnagp /n: dontetnagp /v:1.0'
                 }
 		    }
 		}
@@ -38,9 +34,14 @@ pipeline{
 		stage("sonar end"){
 		    steps{
 		        withSonarQubeEnv('Test_Sonar') {
-                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll" end'
+                    bat script : 'dotnet "%scannerhome%/SonarScanner.MSBuild.dll" end'
                 }
 		    }
+		}
+		stage("test"){
+			steps{
+				bat script:'dotnet test'
+			}
 		}
 		stage("docker build"){
 		    steps{
