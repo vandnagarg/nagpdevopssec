@@ -102,7 +102,7 @@ pipeline{
 					brach 'develop'
 				}
 				
-				withEnv(["KUBECONFIG"] = './config'){
+				withEnv(['"KubeConfig"='./config'']) {
 					bat script:'helm install vanchart --generate-name --set nodePOrt = 8080 --set image.repository=dotnet-vandna-nagp'
 				}
 				
@@ -114,7 +114,7 @@ pipeline{
 					brach 'feature'
 				}
 				
-				withEnv(["KUBECONFIG"] = './config'){
+				withEnv(['"KubeConfig"='./config'']) {
 					bat script:'helm install vanchart --generate-name --set nodePOrt = 9090 --set image.repository=dotnet-vandna-nagp'
 				}
 				
