@@ -3,6 +3,7 @@ pipeline{
 	
 	environment{
 	    scannerhome = tool name: 'sonar_scanner_dotnet' , type:'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
+		branch='develop'
 	}
 	
 	stages{
@@ -47,7 +48,26 @@ pipeline{
 		        bat script: 'docker build -t dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER% ./Nagpdotnet'
 		    }
 		}
-		stage("delete container"){
+		stage("delete container develop"){
+			when{
+				brach 'develop'
+			}
+		    steps{
+		        echo "del container"
+		        bat script: '''For /F %%i IN ('docker ps ^| finstr 8080') do set contId = %%i
+		        IF "%contId" == "" (
+		            echo "no container running
+		        )
+		        ELSE(
+		            docker stop %contId%
+		            docker rm -f %contId%
+		        )'''
+		    }
+		}
+		stage("delete container feature"){
+			when{
+				brach 'feature'
+			}
 		    steps{
 		        echo "del container"
 		        bat script: '''For /F %%i IN ('docker ps ^| finstr 9090') do set contId = %%i
@@ -60,12 +80,46 @@ pipeline{
 		        )'''
 		    }
 		}
-		stage('docker run'){
+		stage('docker run develop'){
+			when{
+				brach 'develop'
+			}
+		    steps{
+		        bat script: 'docker run -p 8080:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
+		    }
+		}
+		stage('docker run feature'){
+			when{
+				brach 'feature'
+			}
 		    steps{
 		        bat script: 'docker run -p 9090:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
 		    }
 		}
-		
+		stage('docker deployment develop'){
+			steps{
+				when{
+					brach 'develop'
+				}
+				
+				withEnv(["KUBECONFIG"] = './config'){
+					bat script:'helm install vanchart --generate-name --set nodePOrt = 8080 --set image.repository=dotnet-vandna-nagp'
+				}
+				
+			}
+		}
+		stage('docker deployment feature'){
+			steps{
+				when{
+					brach 'feature'
+				}
+				
+				withEnv(["KUBECONFIG"] = './config'){
+					bat script:'helm install vanchart --generate-name --set nodePOrt = 9090 --set image.repository=dotnet-vandna-nagp'
+				}
+				
+			}
+		}
 		
 	}
 }
