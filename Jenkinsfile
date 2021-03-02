@@ -3,7 +3,7 @@ pipeline{
 	
 	environment{
 	    scannerhome = tool name: 'sonar_scanner_dotnet' , type:'hudson.plugins.sonar.MsBuildSQRunnerInstallation'
-		
+		branchname = "${env.BRANCH_NAME}"
 	}
 	
 	stages{
