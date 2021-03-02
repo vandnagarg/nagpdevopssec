@@ -22,7 +22,7 @@ pipeline{
 		    steps{
 		        withSonarQubeEnv('Test_Sonar') {
                     echo "start sonar"
-                    bat script : 'dotnet "%scannerhome%/SonarScanner.MSBuild.dll" begin /k:dontetnagp /n: dontetnagp /v:1.0'
+                    bat script : 'dotnet "%scannerhome%/SonarScanner.MSBuild.dll" /k:dontetnagp /n: dontetnagp /v:1.0'
                 }
 		    }
 		}
