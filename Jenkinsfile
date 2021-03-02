@@ -25,7 +25,7 @@ pipeline{
 		    steps{
 		        withSonarQubeEnv('Test_Sonar') {
                     echo "start sonar"
-                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll'
+                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll" begin'
                 }
 		    }
 		}
@@ -37,7 +37,7 @@ pipeline{
 		stage("sonar end"){
 		    steps{
 		        withSonarQubeEnv('Test_Sonar') {
-                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll'
+                    bat script : 'dotnet "%scannerhome%/sonarscanner.msbuild.dll" end'
                 }
 		    }
 		}
