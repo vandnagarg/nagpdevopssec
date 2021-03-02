@@ -65,29 +65,7 @@ pipeline{
 		        bat script: 'docker run -p 9090:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
 		    }
 		}
-		stage("docker build"){
-		    steps{
-		        echo "docker build"
-		        bat script: 'docker build ./tree/develop/Nagpdotnet'
-		    }
-		}
-		stage("delete container"){
-		    steps{
-		        echo "del container"
-		        bat script: '''For /F %%i IN ('docker ps ^| finstr 9090') do set contId = %%i
-		        IF "%contId" == "" (
-		            echo "no container running
-		        )
-		        ELSE(
-		            docker stop %contId%
-		            docker rm -f %contId%
-		        )'''
-		    }
-		}
-		stage('docker run'){
-		    steps{
-		        bat script: 'docker run -p 9090:80 dtr.nagarro.com:443/nagp-dotnet-vandnagarg:%BUILD_NUMBER%'
-		    }
-		}
+		
+		
 	}
 }
